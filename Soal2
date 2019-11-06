@@ -1,0 +1,33 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jun 23 10:35:35 2019
+
+@author: Levee
+"""
+import pandas as pd
+
+di = pd.read_csv (r'D:\Compfest\catatan_lokasi.csv')
+
+mudik = di.loc[di['tanggal'] == '05/06/19']
+
+filter_list = ['Jakarta Pusat', 
+               'Kabupaten Bogor', 
+               'Kota Tangerang', 'Kota Bogor', 
+               'Kota Depok', 'Jakarta Timur', 
+               'Kota Bekasi', 'Jakarta Selatan', 
+               'Jakarta Utara', 'Jakarta Barat', 
+               'Kabupaten Tangerang', 'Kabupaten Bekasi', 
+               'Kota Tangerang Selatan'] 
+
+print (mudik)
+ #didapatkan pada row 1500 - 1599
+
+a = mudik.lokasi_dominan
+print (a)
+
+lokasi = mudik[:]['lokasi_dominan']
+print (lokasi)
+
+tujuanMudik= list(set(lokasi).difference(set(filter_list)))
+
+print (tujuanMudik)

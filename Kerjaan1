@@ -1,0 +1,136 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jun 23 18:58:43 2019
+
+@author: Levee
+"""
+
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv('catatan_lokasi.csv')
+#df.info() #untuk menegtahui details
+#diketehui terdapat 3 kolom : id, tanggal, dan lokasi_dominan
+
+
+#NOMOR 1 Jumlah Karyawan "TokoLapak"
+print ("Nomor 1 =" , "Jumlah Karyawan", df['id'].max(), "orang")
+
+
+#NOMOR 2 Jumalah karyawan yang mudik pada 5 juni 2019
+tanggalMudik=df[df.tanggal=="05/06/19"]
+print (tanggalMudik)
+
+Kota_yangTersedia = df['lokasi_dominan'].unique()
+##print(Kota_yangTersedia) ##untuk mendapatkan list seluruh kota yang tersedia
+##kemudian dari list tersebut diambil kota JABODETABEK yaitu :
+
+jabodetabek = ['Jakarta Pusat', 'Kabupaten Bogor', 'Kota Tangerang', 'Kota Bogor',
+ 'Kota Depok', 'Jakarta Timur', 'Kota Bekasi', 'Jakarta Selatan',
+ 'Jakarta Utara', 'Jakarta Barat', 'Kabupaten Tangerang', 'Kabupaten Bekasi',
+ 'Kota Tangerang Selatan']
+
+#maka jumlah orang yang mudik bisa didapatkan dengan mengeliminasi kota jabodetabek pada tanggal 5/6/19:
+JumlahMudik =  (tanggalMudik[~tanggalMudik.lokasi_dominan.isin(jabodetabek)])
+print ("Jumlah karyawan yang mudik di luar JABODETABEK pada tanggal 5/6/19 adalah :", JumlahMudik.shape[0], "orang")
+
+
+#NOMOR 3
+tanggalMudik=df[df.tanggal=="05/06/19"]
+print (tanggalMudik)
+
+
+Kota_tanggal5 = tanggalMudik['lokasi_dominan'].unique()
+print(Kota_tanggal5) ##untuk mendapatkan list seluruh kota yang tersedia pada tanggal 5
+#kemudian dari list tersebut diambil kota JABODETABEK yaitu :
+
+jabodetabek = ['Jakarta Pusat', 'Kabupaten Bogor', 'Kota Tangerang', 'Kota Bogor',
+ 'Kota Depok', 'Jakarta Timur', 'Kota Bekasi', 'Jakarta Selatan',
+ 'Jakarta Utara', 'Jakarta Barat', 'Kabupaten Tangerang', 'Kabupaten Bekasi',
+ 'Kota Tangerang Selatan']
+JumlahMudik =  (tanggalMudik[~tanggalMudik.lokasi_dominan.isin(jabodetabek)])
+
+print (JumlahMudik.describe(include=[np.object]).lokasi_dominan)
+##Dari 91 Data, dengan 15 Kota/Kabupaten, Kabupaten Sleman menempati posisi tujuan mudik tertinggi yaitu 14 
+print ("Kabupaten/Kota yang menjadi tujuan mudik terbanyak yaitu :", JumlahMudik['lokasi_dominan'].value_counts().head(1))
+
+#NOMOR 4
+tanggalMudik=df[df.tanggal=="05/06/19"]
+
+Kota_tanggal5 = tanggalMudik['lokasi_dominan'].unique()
+#print(Kota_tanggal5) ##untuk mendapatkan list seluruh kota yang tersedia pada tanggal 5
+#kemudian dari list tersebut diambil kota JABODETABEK yaitu :
+
+jabodetabek = ['Jakarta Pusat', 'Kabupaten Bogor', 'Kota Tangerang', 'Kota Bogor',
+ 'Kota Depok', 'Jakarta Timur', 'Kota Bekasi', 'Jakarta Selatan',
+ 'Jakarta Utara', 'Jakarta Barat', 'Kabupaten Tangerang', 'Kabupaten Bekasi',
+ 'Kota Tangerang Selatan']
+JumlahMudik =  (tanggalMudik[~tanggalMudik.lokasi_dominan.isin(jabodetabek)])
+print (JumlahMudik)
+
+#count_kabkota = JumlahMudik.groupby(['lokasi_dominan']).size().reset_index(name='counts')
+#print(count_kabkota)
+
+print ("NOMOR 4", "Kabupaten/Kota yangmenjadi tujuan mudik paling sedikit yaitu :", JumlahMudik['lokasi_dominan'].value_counts().tail(1))
+
+
+#NOMOR 5
+
+jabodetabek = ['Jakarta Pusat', 'Kabupaten Bogor', 'Kota Tangerang', 'Kota Bogor',
+ 'Kota Depok', 'Jakarta Timur', 'Kota Bekasi', 'Jakarta Selatan',
+ 'Jakarta Utara', 'Jakarta Barat', 'Kabupaten Tangerang', 'Kabupaten Bekasi',
+ 'Kota Tangerang Selatan']
+
+print (df.set_index("lokasi_dominan", inplace = True)
+
+#print (df.loc[df['lokasi_dominan']==a])
+
+
+#NOMOR 6
+#Salah
+tanggalMudik1=df[df.tanggal=="30/05/19"]
+print (tanggalMudik1)
+
+tanggalMudik2
+Kota_tanggal30 = tanggalMudik2['lokasi_dominan'].unique()
+print(Kota_tanggal30) ##untuk mendapatkan list seluruh kota yang tersedia pada tanggal 5
+
+jabodetabek = ['Jakarta Pusat', 'Kabupaten Bogor', 'Kota Tangerang', 'Kota Bogor',
+ 'Kota Depok', 'Jakarta Timur', 'Kota Bekasi', 'Jakarta Selatan',
+ 'Jakarta Utara', 'Jakarta Barat', 'Kabupaten Tangerang', 'Kabupaten Bekasi',
+ 'Kota Tangerang Selatan']
+
+JumlahMudik1 =  (tanggalMudik2[~tanggalMudik2.lokasi_dominan.isin(jabodetabek)])
+print (JumlahMudik1)
+
+count_kabkota = JumlahMudik1.groupby(['lokasi_dominan']).size().reset_index(name='counts')
+print(count_kabkota)
+
+dk = pd.read_csv('data_profil.csv')
+
+
+##NOMOR 13
+
+print(dk.describe)
+print ("Nomor 13:","Median umur keseluruhan karyawan adalah =" , int(dk['umur'].median()), "tahun")
+
+
+#Nomor 14
+DS=dk[dk.divisi=="Data Science"]
+print(DS) #untuk menampilkan keseluruhan data divisi Data Science
+print ("Nomor 14:", "Umur termuda adalah :", int(DS['umur'].min()), "tahun")
+
+
+#Nomor 15
+DE=dk[dk.divisi=="Data Engineer"]
+print(DE) #untuk menampilkan keseluruhan data divisi Data Engineer
+print ("Nomor 15:", "Umur paling senior adalah :", int(DE['umur'].max()), "tahun")
+
+
+#Nomor 16
+
+#print(dk.info())
+#dk.describe(include=['object', 'int64'])
+
+#A = (DS.describe())
+#print (A)
